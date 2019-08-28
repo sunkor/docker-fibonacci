@@ -2,7 +2,7 @@ const keys = require("./keys");
 
 const redis = require("redis");
 
-const redisClient = redis.redisClient({
+const redisClient = redis.createClient({
   host: keys.redisHost,
   port: keys.redisPort,
   retry_strategy: () => 1000
@@ -19,4 +19,4 @@ subscriber.on("message", (channel, message) => {
   redisClient.hset("values", message, fib(parseInt(message)));
 });
 
-subscriber.subscriber("insert");
+subscriber.subscribe("insert");
