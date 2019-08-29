@@ -8,6 +8,11 @@ class Fib extends Component {
     index: ""
   };
 
+  componentDidMount() {
+    this.fetchValues();
+    this.fetchIndexes();
+  }
+
   //From redis - fetch all fib values.
   async fetchValues() {
     const values = await axios.get("/api/values/current");
@@ -18,11 +23,6 @@ class Fib extends Component {
   async fetchIndexes() {
     const seenIndexes = await axios.get("/api/values/all");
     this.setState({ seenIndexes: seenIndexes.data });
-  }
-
-  componentDidMount() {
-    this.fetchValues();
-    this.fetchIndexes();
   }
 
   renderSeenIndexes() {
@@ -38,6 +38,7 @@ class Fib extends Component {
         </div>
       );
     }
+    return entries;
   }
 
   handleSubmit = async event => {

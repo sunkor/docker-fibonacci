@@ -4,6 +4,13 @@ services:
     image: "postgres:latest"
   redis:
     image: "redis:latest"
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "3050:80"
   server:
     build:
       dockerfile: Dockerfile.dev
@@ -23,6 +30,9 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./worker
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     volumes:
       - /app/node_modules
       - ./worker:/app

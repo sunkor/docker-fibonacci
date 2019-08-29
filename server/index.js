@@ -51,13 +51,14 @@ app.get("/values/current", async (req, res) => {
 });
 
 app.post("/values", async (req, res) => {
-  const indexToCalculate = req.body.value;
-  if (indexToCalculate < 40) {
+  const indexToCalculate = req.body.index;
+  if (parseInt(indexToCalculate) > 40) {
     return res.status(422).send("index too big!");
   }
   redisClient.hset("values", indexToCalculate, "Nothing yet!");
-  redisPublisher.publish("insert", index);
-  pgClient.query("INSERT INTO values(number)  VALUES $1", [indexToCalculate]);
+  console.log("published message");
+  redisPublisher.publish("insert", indexToCalculate);
+  pgClient.query("INSERT INTO values(number) values($1)", [indexToCalculate]);
 
   res.send({ working: true });
 });
