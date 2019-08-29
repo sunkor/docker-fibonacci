@@ -10,7 +10,7 @@ script:
   - "docker run -e CI=true sunkor/fibonacci-stack-react-test npm run test -- --coverage"
 
 after_success:
-  - "docker build -t sunkor/fibonacci-stack-client ./frontend"
+  - "docker build -t sunkor/fibonacci-stack-frontend ./frontend"
   - "docker build -t sunkor/fibonacci-stack-nginx ./nginx"
   - "docker build -t sunkor/fibonacci-stack-server ./server"
   - "docker build -t sunkor/fibonacci-stack-worker ./worker"
@@ -19,7 +19,7 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker_login -u "$DOCKER_ID" --pasword-stdin
 
   #Take those images and push them to docker hub
-  - docker push sunkor/fibonacci-stack-client
+  - docker push sunkor/fibonacci-stack-frontend
   - docker push sunkor/fibonacci-stack-nginx
   - docker push sunkor/fibonacci-stack-server
   - docker push sunkor/fibonacci-stack-worker

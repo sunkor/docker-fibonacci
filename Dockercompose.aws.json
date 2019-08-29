@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "sunkor/fibonacci-stack-frontend",
+      "hostname": "frontend",
+      "essential": false
+    },
+    {
+      "name": "frontend",
+      "image": "sunkor/fibonacci-stack-server",
+      "hostname": "server",
+      "essential": false
+    },
+    {
+      "name": "frontend",
+      "image": "sunkor/fibonacci-stack-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "sunkor/fibonacci-stack-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["frontend", "server"]
+    }
+  ]
+}
