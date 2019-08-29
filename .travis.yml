@@ -10,10 +10,10 @@ script:
   - "docker run -e CI=true sunkor/fibonacci-stack-react-test npm run test -- --coverage"
 
 after_success:
-  - "docker build -t sunkor/fibonacci-stack-frontend ./frontend"
-  - "docker build -t sunkor/fibonacci-stack-nginx ./nginx"
-  - "docker build -t sunkor/fibonacci-stack-server ./server"
-  - "docker build -t sunkor/fibonacci-stack-worker ./worker"
+  - docker build -t sunkor/fibonacci-stack-frontend ./frontend
+  - docker build -t sunkor/fibonacci-stack-nginx ./nginx
+  - docker build -t sunkor/fibonacci-stack-server ./server
+  - docker build -t sunkor/fibonacci-stack-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker_login -u "$DOCKER_ID" --pasword-stdin
   - docker push sunkor/fibonacci-stack-frontend
   - docker push sunkor/fibonacci-stack-nginx
