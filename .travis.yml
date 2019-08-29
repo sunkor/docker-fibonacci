@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - "docker build -t sunkor/fibonacci-stack-react-test -f Dockerfile.dev ./frontend/Dockerfile.dev"
+  - "docker build -t sunkor/fibonacci-stack-react-test -f Dockerfile.dev ./frontend"
 
 script:
   - "docker run -e CI=true sunkor/docker-react npm run test -- --coverage"
