@@ -56,7 +56,6 @@ app.post("/values", async (req, res) => {
     return res.status(422).send("index too big!");
   }
   redisClient.hset("values", indexToCalculate, "Nothing yet!");
-  console.log("published message");
   redisPublisher.publish("insert", indexToCalculate);
   pgClient.query("INSERT INTO values(number) values($1)", [indexToCalculate]);
 

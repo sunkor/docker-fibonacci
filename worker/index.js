@@ -16,7 +16,6 @@ function fib(index) {
 }
 
 subscriber.on("message", (channel, message) => {
-  console.log("received message");
   redisClient.hset("values", message, fib(parseInt(message)));
 });
 
