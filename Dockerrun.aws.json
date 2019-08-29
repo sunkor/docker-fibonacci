@@ -8,13 +8,13 @@
       "essential": false
     },
     {
-      "name": "frontend",
+      "name": "server",
       "image": "sunkor/fibonacci-stack-server",
       "hostname": "server",
       "essential": false
     },
     {
-      "name": "frontend",
+      "name": "worker",
       "image": "sunkor/fibonacci-stack-worker",
       "hostname": "worker",
       "essential": false
