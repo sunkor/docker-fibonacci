@@ -9,9 +9,9 @@
       "memory": 128
     },
     {
-      "name": "server",
+      "name": "api",
       "image": "sunkor/fibonacci-stack-api",
-      "hostname": "server",
+      "hostname": "api",
       "essential": false,
       "memory": 128
     },
